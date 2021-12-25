@@ -5,6 +5,8 @@ window.onload = function () {
 
     if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
+      document.querySelector('.theme-switch i').className = 'far fa-moon';
+      document.querySelector('.navbar').className = 'navbar navbar-expand-lg navbar-dark';
     }
   }
 }
@@ -15,14 +17,14 @@ function switchTheme(event) {
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
 
-    document.querySelector('.theme-switch i').className = 'far fa-moon'
-    document.querySelector('.navbar').className = 'navbar navbar-expand-lg navbar-dark'
+    document.querySelector('.theme-switch i').className = 'far fa-moon';
+    document.querySelector('.navbar').className = 'navbar navbar-expand-lg navbar-dark';
   } else {
     document.documentElement.setAttribute('data-theme', 'light');
     localStorage.setItem('theme', 'light');
 
-    document.querySelector('.theme-switch i').className = 'fas fa-moon'
-    document.querySelector('.navbar').className = 'navbar navbar-expand-lg navbar-light'
+    document.querySelector('.theme-switch i').className = 'fas fa-moon';
+    document.querySelector('.navbar').className = 'navbar navbar-expand-lg navbar-light';
   }
 }
 toggleSwitch.addEventListener('change', switchTheme, false);
