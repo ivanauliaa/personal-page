@@ -43,6 +43,11 @@ p {
 
 a {
   text-decoration: none;
+  color: #1E8FDD;
+}
+
+a:hover {
+  color: #1769A1;
 }
 
 .navbar .navbar-brand img {
@@ -126,7 +131,8 @@ a {
 }
 
 .about .cta a {
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .skills {
@@ -163,13 +169,19 @@ a {
   border-radius: 5px;
 }
 
+.projects .project-card.high-priority-sea {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgba(30, 143, 221, .3);
+}
+
 @media (max-width: 800px) {
   .projects .project-card {
     padding: 20px 15px;
   }
 
   .projects .project-card .cta .btn-sea-secondary {
-    margin-bottom: 15px;
+    margin-top: 15px;
   }
 }
 
@@ -184,6 +196,10 @@ a {
   color        : #1C1F26;
 }
 
+.projects .project-card i {
+  color        : #1E8FDD;
+}
+
 .projects .project-card ul {
   margin-bottom: 30px;
 }
@@ -193,7 +209,8 @@ a {
 }
 
 .projects .project-card .cta a {
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .contact {
