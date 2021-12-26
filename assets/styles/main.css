@@ -234,8 +234,13 @@ a:hover {
 }
 
 .skills img {
-  width    : 250px;
+  width    : 6rem;
+  margin-bottom: 15px;
   max-width: 100%;
+}
+
+.skills p {
+  font-weight: 700;
 }
 
 .projects {
