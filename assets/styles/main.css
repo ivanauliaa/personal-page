@@ -37,8 +37,8 @@
   --btn-sea-bg-focus : #176BA6;
   --btn-sea-bg-active: #1B81C7;
 
-  --btn-sea-shadow: rgba(233, 244, 252, 0.5);
-  --btn-sea-pulse: rgba(233, 244, 252, 0.3);
+  --btn-sea-shadow: rgba(165, 210, 241, 0.9);
+  --btn-sea-pulse: rgba(165, 210, 241, 0.7);
 
   --btn-heart-font-active: #FDF4F7;
 
@@ -46,8 +46,8 @@
   --btn-heart-bg-focus : #A6174A;
   --btn-heart-bg-active: #C71B59;
 
-  --btn-heart-shadow: rgba(252, 233, 239, 0.5);
-  --btn-heart-pulse: rgba(252, 233, 239, 0.3);
+  --btn-heart-shadow: rgba(241, 165, 193, 0.9);
+  --btn-heart-pulse: rgba(241, 165, 193, 0.7);
 }
 
 body {
