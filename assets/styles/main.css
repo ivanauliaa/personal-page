@@ -1,9 +1,9 @@
 :root {
-  --font-color: #1C1F26;
-  --font-sea-color: #1E8FDD;
+  --font-color              : #1C1F26;
+  --font-sea-color          : #1E8FDD;
   --font-sea-color-secondary: #1B81C7;
-  --font-heart-color: #DD1E63;
-  --bg-color  : #FFFFFF;
+  --font-heart-color        : #DD1E63;
+  --bg-color                : #FFFFFF;
 
   --btn-sea-font-active: #176BA6;
 
@@ -12,7 +12,7 @@
   --btn-sea-bg-active: #A5D2F1;
 
   --btn-sea-shadow: rgba(27, 129, 199, 0.5);
-  --btn-sea-pulse: rgba(27, 129, 199, 0.3);
+  --btn-sea-pulse : rgba(27, 129, 199, 0.3);
 
   --btn-heart-font-active: #A6174A;
 
@@ -21,15 +21,15 @@
   --btn-heart-bg-active: #F1A5C1;
 
   --btn-heart-shadow: rgba(199, 27, 89, 0.5);
-  --btn-heart-pulse: rgba(199, 27, 89, 0.3);
+  --btn-heart-pulse : rgba(199, 27, 89, 0.3);
 }
 
 [data-theme="dark"] {
-  --font-color: #FFFFFF;
-  --font-sea-color: #A5D2F1;
+  --font-color              : #FFFFFF;
+  --font-sea-color          : #A5D2F1;
   --font-sea-color-secondary: #C7E3F7;
-  --font-heart-color: #F1A5C1;
-  --bg-color  : #1C1F26;
+  --font-heart-color        : #F1A5C1;
+  --bg-color                : #1C1F26;
 
   --btn-sea-font-active: #F4F9FD;
 
@@ -38,7 +38,7 @@
   --btn-sea-bg-active: #1B81C7;
 
   --btn-sea-shadow: rgba(165, 210, 241, 0.9);
-  --btn-sea-pulse: rgba(165, 210, 241, 0.7);
+  --btn-sea-pulse : rgba(165, 210, 241, 0.7);
 
   --btn-heart-font-active: #FDF4F7;
 
@@ -47,13 +47,13 @@
   --btn-heart-bg-active: #C71B59;
 
   --btn-heart-shadow: rgba(241, 165, 193, 0.9);
-  --btn-heart-pulse: rgba(241, 165, 193, 0.7);
+  --btn-heart-pulse : rgba(241, 165, 193, 0.7);
 }
 
 body {
-  font-family        : 'Archivo Narrow', sans-serif;
-  background-color   : var(--bg-color);
-  transition: 0.5s;
+  font-family     : 'Archivo Narrow', sans-serif;
+  background-color: var(--bg-color);
+  transition      : 0.5s;
 }
 
 h1,
@@ -64,9 +64,9 @@ h5,
 h6,
 p,
 li {
-  color : var(--font-color);
+  color     : var(--font-color);
   transition: 0.5s;
-  margin: 0;
+  margin    : 0;
 }
 
 h1,
@@ -100,12 +100,16 @@ p {
 a {
   text-decoration: none;
   color          : var(--font-sea-color);
-  transition: 0.5s;
+  transition     : 0.5s;
 }
 
 a:hover {
-  color: var(--font-sea-color-secondary);
+  color     : var(--font-sea-color-secondary);
   transition: 0.5s;
+}
+
+.navbar {
+  box-shadow: 0px 6px 60px rgba(22, 28, 51, 0.06);
 }
 
 .navbar-collapse {
@@ -124,7 +128,7 @@ a:hover {
 }
 
 .navbar .navbar-nav .nav-link.active {
-  color: var(--font-color);
+  color     : var(--font-color);
   transition: 0.5s;
 }
 
@@ -141,12 +145,12 @@ a:hover {
 }
 
 .theme-switch i {
-  color: var(--font-color);
+  color     : var(--font-color);
   transition: 0.5s;
 }
 
 .intro {
-  margin-top   : 150px;
+  margin-top   : 180px;
   margin-bottom: 180px;
 }
 
@@ -169,7 +173,7 @@ a:hover {
 }
 
 .intro .subtitle {
-  color: var(--font-heart-color);
+  color     : var(--font-heart-color);
   transition: 0.5s;
 }
 
@@ -196,7 +200,7 @@ a:hover {
   margin-bottom: 20px;
   font-size    : 24px;
   color        : var(--font-sea-color);
-  transition: 0.5s;
+  transition   : 0.5s;
 }
 
 .about ul {
@@ -226,7 +230,7 @@ a:hover {
   margin-bottom: 20px;
   font-size    : 24px;
   color        : var(--font-heart-color);
-  transition: 0.5s;
+  transition   : 0.5s;
 }
 
 .skills ul li {
@@ -234,21 +238,23 @@ a:hover {
 }
 
 .skills img {
-  width    : 6rem;
+  width        : 6rem;
   margin-bottom: 15px;
-  max-width: 100%;
+  max-width    : 100%;
 }
 
 .skills p {
   font-weight: 700;
 }
 
-.projects {
+.projects,
+.certificates {
   margin-top   : 180px;
   margin-bottom: 180px;
 }
 
-.projects .project-card {
+.projects .project-card,
+.certificates .certificate-card {
   padding      : 80px 60px;
   margin-bottom: 80px;
   border-width : 1px;
@@ -261,56 +267,77 @@ a:hover {
   border-width: 2px;
   border-style: solid;
   border-color: var(--btn-sea-pulse);
-  transition: 0.5s;
+  transition  : 0.5s;
+}
+
+.certificates .certificate-card.high-priority-heart {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--btn-heart-pulse);
+  transition  : 0.5s;
 }
 
 @media (max-width: 800px) {
-  .projects .project-card {
+
+  .projects .project-card,
+  .certificates .certificate-card {
     padding: 20px 15px;
   }
 
-  .projects .project-card .cta .btn-sea-secondary {
+  .projects .project-card .cta .btn,
+  .certificates .certificate-card .cta .btn {
     margin-top: 15px;
   }
 }
 
-.projects .project-card img {
+.projects .project-card img,
+.certificates .certificate-card img {
   width    : 480px;
   max-width: 100%;
 }
 
-.projects .project-card p.title {
+.projects .project-card p.title,
+.certificates
+.certificate-card p.title {
   margin-bottom: 20px;
   font-size    : 24px;
   color        : var(--font-color);
-  transition: 0.5s;
+  transition   : 0.5s;
 }
 
 .projects .project-card i {
-  color: var(--font-sea-color);
+  color     : var(--font-sea-color);
   transition: 0.5s;
 }
 
-.projects .project-card ul {
+.projects .project-card ul,
+.certificates .certificate-card ul {
   margin-bottom: 30px;
 }
 
-.projects .project-card ul li {
+.projects .project-card ul li,
+.certificates .certificate-card ul li {
   margin-bottom: 15px;
 }
 
-.projects .project-card .cta a {
+.projects .project-card .cta a,
+.certificates .certificate-card .cta a {
   margin-right: 10px;
   margin-left : 10px;
 }
 
 .projects .cta .project-collapse {
-  color: var(--font-sea-color);
+  color     : var(--font-sea-color);
   transition: 0.5s;
 }
 
 .projects .cta .project-collapse:hover {
-  color: var(--font-sea-color-secondary);
+  color     : var(--font-sea-color-secondary);
+  transition: 0.5s;
+}
+
+.certificates .certificate-card i {
+  color     : var(--font-heart-color);
   transition: 0.5s;
 }
 
@@ -324,7 +351,7 @@ a:hover {
   max-width  : 100%;
   margin     : 0 auto 40px;
   color      : var(--font-color);
-  transition: 0.5s;
+  transition : 0.5s;
   line-height: 30px;
 }
 
@@ -393,41 +420,41 @@ footer .social-media a img {
 .btn-heart-secondary {
   background-color: var(--bg-color);
   color           : var(--font-heart-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-heart-secondary:hover {
   background-color: var(--btn-heart-bg-hover);
   color           : var(--font-heart-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-heart-secondary:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
   background-color: var(--btn-heart-bg-focus);
   color           : var(--font-heart-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-heart-secondary:active {
   box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
   background-color: var(--btn-heart-bg-active);
   color           : var(--btn-heart-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-heart-secondary:hover:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
   background-color: var(--btn-heart-bg-active);
   color           : var(--btn-heart-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-heart-secondary:active:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
   background-color: var(--btn-heart-bg-active);
   color           : var(--btn-heart-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-primary {
@@ -466,41 +493,41 @@ footer .social-media a img {
 .btn-sea-secondary {
   background-color: var(--bg-color);
   color           : var(--font-sea-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-secondary:hover {
   background-color: var(--btn-sea-bg-hover);
   color           : var(--font-sea-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-secondary:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
   background-color: var(--btn-sea-bg-focus);
   color           : var(--font-sea-color);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-secondary:active {
   box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
   background-color: var(--btn-sea-bg-active);
   color           : var(--btn-sea-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-secondary:hover:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
   background-color: var(--btn-sea-bg-active);
   color           : var(--btn-sea-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 .btn-sea-secondary:active:focus {
   box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
   background-color: var(--btn-sea-bg-active);
   color           : var(--btn-sea-font-active);
-  transition: 0.5s;
+  transition      : 0.5s;
 }
 
 @keyframes pulse-heart {
