@@ -53,7 +53,7 @@
 body {
     font-family     : 'Archivo Narrow', sans-serif;
     background-color: var(--bg-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 h1,
@@ -65,7 +65,7 @@ h6,
 p,
 li {
     color     : var(--font-color);
-    transition: 0.5s;
+    transition: 0.25s;
     margin    : 0;
 }
 
@@ -76,6 +76,8 @@ h4,
 h5,
 h6 {
     font-family: 'Open Sans', sans-serif;
+    letter-spacing: -2px;
+
 }
 
 h1 {
@@ -100,17 +102,17 @@ p {
 a {
     text-decoration: none;
     color          : var(--font-sea-color);
-    transition     : 0.5s;
+    transition     : 0.25s;
 }
 
 a:hover {
     color     : var(--font-sea-color-secondary);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .bg-main {
     background-color: var(--bg-color);
-    transition     : 0.5s;
+    transition      : 0.25s;
 }
 
 .navbar {
@@ -134,7 +136,7 @@ a:hover {
 
 .navbar .navbar-nav .nav-link.active {
     color     : var(--font-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .theme-switch-wrapper {
@@ -151,7 +153,7 @@ a:hover {
 
 .theme-switch i {
     color     : var(--font-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .intro {
@@ -179,7 +181,7 @@ a:hover {
 
 .intro .subtitle {
     color     : var(--font-heart-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .intro img {
@@ -205,7 +207,7 @@ a:hover {
     margin-bottom: 20px;
     font-size    : 24px;
     color        : var(--font-sea-color);
-    transition   : 0.5s;
+    transition   : 0.25s;
 }
 
 .about ul {
@@ -235,7 +237,7 @@ a:hover {
     margin-bottom: 20px;
     font-size    : 24px;
     color        : var(--font-heart-color);
-    transition   : 0.5s;
+    transition   : 0.25s;
 }
 
 .skills ul li {
@@ -260,7 +262,7 @@ a:hover {
 
 .projects .project-card,
 .certificates .certificate-card {
-    padding      : 80px 60px;
+    padding      : 40px 30px;
     margin-bottom: 80px;
     border-width : 2px;
     border-style : solid;
@@ -269,24 +271,24 @@ a:hover {
 }
 
 .projects .project-card.high-priority-sea {
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     border-color: var(--btn-sea-pulse);
-    transition  : 0.5s;
+    transition  : 0.25s;
 }
 
 .certificates .certificate-card.high-priority-heart {
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     border-color: var(--btn-heart-pulse);
-    transition  : 0.5s;
+    transition  : 0.25s;
 }
 
 @media (max-width: 800px) {
 
     .projects .project-card,
     .certificates .certificate-card {
-        padding: 20px 15px;
+        padding: 40px 30px;
     }
 
     .projects .project-card .cta .btn,
@@ -306,12 +308,12 @@ a:hover {
     margin-bottom: 20px;
     font-size    : 24px;
     color        : var(--font-color);
-    transition   : 0.5s;
+    transition   : 0.25s;
 }
 
 .projects .project-card i {
     color     : var(--font-sea-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .projects .project-card ul,
@@ -332,17 +334,17 @@ a:hover {
 
 .projects .cta .project-collapse {
     color     : var(--font-sea-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .projects .cta .project-collapse:hover {
     color     : var(--font-sea-color-secondary);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .certificates .certificate-card i {
     color     : var(--font-heart-color);
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
 .contact {
@@ -355,7 +357,7 @@ a:hover {
     max-width  : 100%;
     margin     : 0 auto 40px;
     color      : var(--font-color);
-    transition : 0.5s;
+    transition : 0.25s;
     line-height: 30px;
 }
 
@@ -424,41 +426,41 @@ footer .social-media a img {
 .btn-heart-secondary {
     background-color: var(--bg-color);
     color           : var(--font-heart-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-heart-secondary:hover {
     background-color: var(--btn-heart-bg-hover);
     color           : var(--font-heart-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-heart-secondary:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
     background-color: var(--btn-heart-bg-focus);
     color           : var(--font-heart-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-heart-secondary:active {
     box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
     background-color: var(--btn-heart-bg-active);
     color           : var(--btn-heart-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-heart-secondary:hover:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
     background-color: var(--btn-heart-bg-active);
     color           : var(--btn-heart-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-heart-secondary:active:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-heart-shadow);
     background-color: var(--btn-heart-bg-active);
     color           : var(--btn-heart-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-primary {
@@ -497,41 +499,41 @@ footer .social-media a img {
 .btn-sea-secondary {
     background-color: var(--bg-color);
     color           : var(--font-sea-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-secondary:hover {
     background-color: var(--btn-sea-bg-hover);
     color           : var(--font-sea-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-secondary:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
     background-color: var(--btn-sea-bg-focus);
     color           : var(--font-sea-color);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-secondary:active {
     box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
     background-color: var(--btn-sea-bg-active);
     color           : var(--btn-sea-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-secondary:hover:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
     background-color: var(--btn-sea-bg-active);
     color           : var(--btn-sea-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 .btn-sea-secondary:active:focus {
     box-shadow      : 0 0 0 .2rem var(--btn-sea-shadow);
     background-color: var(--btn-sea-bg-active);
     color           : var(--btn-sea-font-active);
-    transition      : 0.5s;
+    transition      : 0.25s;
 }
 
 @keyframes pulse-heart {

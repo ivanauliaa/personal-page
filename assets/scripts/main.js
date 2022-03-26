@@ -1,3 +1,5 @@
+console.log(window.location.href);
+
 window.onload = function () {
   const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
   if (currentTheme) {
@@ -29,7 +31,7 @@ function switchTheme(event) {
 }
 toggleSwitch.addEventListener('change', switchTheme, false);
 
-const toggleCollapse = document.querySelector('.project-collapse');
+const toggleCollapse = document.querySelector('.project-card-collapse');
 function collapseProjects(_) {
   const expanded = this.getAttribute('aria-expanded');
 
