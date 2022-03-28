@@ -200,7 +200,7 @@ a:hover {
     line-height: 4.8em;
     position   : relative;
     overflow   : hidden;
-    width      : 30em;
+    width      : 100%;
 }
 
 .scroller>h1 {
