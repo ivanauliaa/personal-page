@@ -206,7 +206,7 @@ a:hover {
 .scroller>h1 {
     position   : absolute;
     top        : 0;
-    animation  : slide 3s 3s forwards;
+    animation  : slide 3s forwards;
 }
 
 @keyframes slide {
