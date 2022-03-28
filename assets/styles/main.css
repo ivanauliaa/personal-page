@@ -75,7 +75,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Open Sans', sans-serif;
+    font-family   : 'Open Sans', sans-serif;
     letter-spacing: -2px;
 
 }
@@ -123,9 +123,33 @@ a:hover {
     flex-grow: 0;
 }
 
-.navbar .navbar-brand img {
+/* .navbar .navbar-brand img {
     height   : 64px;
     max-width: 100%;
+} */
+
+.brand {
+    background     : linear-gradient(-45deg, var(--font-heart-color), var(--btn-heart-font-active), var(--btn-sea-font-active), var(--font-sea-color));
+    background-size: 400% 400%;
+    animation      : gradient 2.5s ease infinite;
+    height         : 64px;
+    width          : 64px;
+    mask           : url("../images/brand.svg") no-repeat center / contain;
+    -webkit-mask   : url("../images/brand.svg") no-repeat center / contain;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .navbar .navbar-nav .nav-link {
@@ -168,6 +192,39 @@ a:hover {
 
 .intro h1.title {
     margin-bottom: 8px;
+    font-size: 4em;
+}
+
+.scroller {
+    height     : 4.8em;
+    line-height: 4.8em;
+    position   : relative;
+    overflow   : hidden;
+    width      : 30em;
+}
+
+.scroller>h1 {
+    position   : absolute;
+    top        : 0;
+    animation  : slide 3s 3s forwards;
+}
+
+@keyframes slide {
+    0% {
+        top: 0em;
+    }
+
+    33% {
+        top: -1.2em;
+    }
+
+    66% {
+        top: -2.4em;
+    }
+
+    100% {
+        top: -3.6em;
+    }
 }
 
 .intro .subtitle {
