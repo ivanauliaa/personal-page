@@ -192,12 +192,12 @@ a:hover {
 
 .intro h1.title {
     margin-bottom: 8px;
-    font-size: 4em;
+    font-size: 3em;
 }
 
 .scroller {
-    height     : 4.8em;
-    line-height: 4.8em;
+    height     : 3.5em;
+    line-height: 3.5em;
     position   : relative;
     overflow   : hidden;
     width      : 100%;
@@ -637,4 +637,12 @@ footer .social-media a img {
     border    : 2px solid var(--btn-sea-pulse);
     box-shadow: 0 0 0 var(--btn-sea-pulse);
     animation : pulse-sea 2s infinite;
+}
+
+.bignitive-logo {
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 4px;
 }
