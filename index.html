@@ -481,7 +481,6 @@
             const images = document.querySelectorAll(".project-card img");
 
             let scale = 1;
-            let startDistance = 0;
 
             let pointX = 0;
             let pointY = 0;
@@ -489,11 +488,17 @@
             let startX = 0;
             let startY = 0;
 
+            let initialDistance = 0;
+            let initialScale = 1;
+
             let isDragging = false;
+
+            // Prevent native browser drag
+            overlayImage.draggable = false;
 
             function updateTransform() {
                 overlayImage.style.transform =
-                    `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+                    `translate3d(${pointX}px, ${pointY}px, 0) scale(${scale})`;
             }
 
             function resetImage() {
@@ -504,7 +509,7 @@
                 updateTransform();
             }
 
-            // Open overlay
+            // OPEN
             images.forEach((img) => {
                 img.addEventListener("click", () => {
                     overlay.classList.add("active");
@@ -517,7 +522,7 @@
                 });
             });
 
-            // Close overlay
+            // CLOSE
             function closeOverlay() {
                 overlay.classList.remove("active");
 
@@ -538,28 +543,22 @@
                 }
             });
 
-            // Mouse wheel zoom
+            // DESKTOP ZOOM
             overlay.addEventListener("wheel", (e) => {
                 e.preventDefault();
 
-                const xs = (e.clientX - pointX) / scale;
-                const ys = (e.clientY - pointY) / scale;
+                const delta = -e.deltaY * 0.001;
 
-                scale += e.deltaY * -0.001;
+                scale += delta;
 
                 scale = Math.min(Math.max(1, scale), 5);
-
-                pointX = e.clientX - xs * scale;
-                pointY = e.clientY - ys * scale;
 
                 updateTransform();
             });
 
-            // Desktop drag
+            // DESKTOP DRAG
             overlayImage.addEventListener("mousedown", (e) => {
                 if (scale <= 1) return;
-
-                e.preventDefault();
 
                 isDragging = true;
 
@@ -569,82 +568,80 @@
                 overlayImage.style.cursor = "grabbing";
             });
 
-            document.addEventListener("mousemove", (e) => {
+            window.addEventListener("mousemove", (e) => {
                 if (!isDragging) return;
 
                 pointX = e.clientX - startX;
                 pointY = e.clientY - startY;
 
-                updateTransform();
+                requestAnimationFrame(updateTransform);
             });
 
-            document.addEventListener("mouseup", () => {
+            window.addEventListener("mouseup", () => {
                 isDragging = false;
+
                 overlayImage.style.cursor = "grab";
             });
 
-            // Mobile drag + pinch
-            let lastTouchX = 0;
-            let lastTouchY = 0;
-
-            overlay.addEventListener("touchstart", (e) => {
+            // MOBILE TOUCH
+            overlayImage.addEventListener("touchstart", (e) => {
+                // DRAG
                 if (e.touches.length === 1 && scale > 1) {
-                    lastTouchX = e.touches[0].clientX;
-                    lastTouchY = e.touches[0].clientY;
+                    isDragging = true;
+
+                    startX = e.touches[0].clientX - pointX;
+                    startY = e.touches[0].clientY - pointY;
                 }
 
+                // PINCH
                 if (e.touches.length === 2) {
-                    startDistance = getDistance(
+                    isDragging = false;
+
+                    initialDistance = getDistance(
                         e.touches[0],
                         e.touches[1]
                     );
+
+                    initialScale = scale;
                 }
             }, { passive: false });
 
-            overlay.addEventListener("touchmove", (e) => {
-                // Drag
-                if (e.touches.length === 1 && scale > 1) {
-                    e.preventDefault();
+            overlayImage.addEventListener("touchmove", (e) => {
+                e.preventDefault();
 
-                    const touch = e.touches[0];
+                // DRAG
+                if (e.touches.length === 1 && isDragging && scale > 1) {
+                    pointX = e.touches[0].clientX - startX;
+                    pointY = e.touches[0].clientY - startY;
 
-                    const dx = touch.clientX - lastTouchX;
-                    const dy = touch.clientY - lastTouchY;
-
-                    pointX += dx;
-                    pointY += dy;
-
-                    lastTouchX = touch.clientX;
-                    lastTouchY = touch.clientY;
-
-                    updateTransform();
+                    requestAnimationFrame(updateTransform);
                 }
 
-                // Pinch zoom
+                // PINCH
                 if (e.touches.length === 2) {
-                    e.preventDefault();
-
-                    const newDistance = getDistance(
+                    const currentDistance = getDistance(
                         e.touches[0],
                         e.touches[1]
                     );
 
-                    const zoomFactor = newDistance / startDistance;
-
-                    scale *= zoomFactor;
+                    scale = initialScale * (
+                        currentDistance / initialDistance
+                    );
 
                     scale = Math.min(Math.max(1, scale), 5);
 
-                    startDistance = newDistance;
-
-                    updateTransform();
+                    requestAnimationFrame(updateTransform);
                 }
             }, { passive: false });
 
-            function getDistance(touch1, touch2) {
+            overlayImage.addEventListener("touchend", () => {
+                isDragging = false;
+            });
+
+            function getDistance(t1, t2) {
                 return Math.hypot(
-                    touch2.clientX - touch1.clientX,
-                    touch2.clientY - touch1.clientY
+                    t2.clientX - t1.clientX,
+                    t2.clientY - t1.clientY
                 );
             }
         }
