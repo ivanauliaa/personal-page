@@ -123,7 +123,7 @@
                         </a> -->
                     </div>
                 </div>
-                <div class="col text-center d-none d-lg-block">
+                <div class="col text-center">
                     <img src="./assets/images/intro.png" alt="Ivan Aulia Rahman Intro">
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 </div>
             </div>
             <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12 mb-5 text-center">
+                <div class="col-lg-6 col-md-12 mb-5 text-center d-none d-lg-block">
                     <img src="./assets/images/web-design.svg" alt="Ivan Aulia Rahman About">
                 </div>
                 <div class="col">
@@ -187,9 +187,9 @@
                                 <p class="title text-center">
                                     Rumat Nusa
                                 </p>
-                                <p>is a screening tool designed to help evaluate cognitive decline symptoms related. It supports early detection through structured questions and scoring. Technology that I use are React, TypeScript, Tailwind, SEO Optimization.</p>
+                                <p>Screening tool designed to help evaluate cognitive decline symptoms related. It supports early detection through structured questions and scoring. Technology that I use are React, TypeScript, Tailwind, SEO Optimization.</p>
                                 <div class="cta text-center">
-                                    <a href="https://rumatnusa.com">
+                                    <a href="https://rumatnusa.com" target="_blank">
                                         <button class="btn btn-block btn-sea-secondary text-uppercase">
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
@@ -215,7 +215,7 @@
                                     LongTrip is a travel itinerary management app through features that allow users to create, organize, and update travel plans in a more structured and efficient way. Technology that I use are Flutter, SQLite, and Firebase.
                                 </p>
                                 <div class="cta text-center">
-                                    <a href="https://play.google.com/store/apps/details?id=com.bignitive.longtrip">
+                                    <a href="https://play.google.com/store/apps/details?id=com.bignitive.longtrip" target="_blank">
                                         <button class="btn btn-block btn-sea-secondary text-uppercase">
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
@@ -239,7 +239,7 @@
                                 </p>
                                 <p>Beekind Art was developed as a promotional platform for a handmade beaded UMKM, modern design to showcase product catalogs, strengthen branding, and make it easier to explore and order products online. Technology that i use are HTML, CSS, JS, Netlify.</p>
                                 <div class="cta text-center">
-                                    <a href="https://beekindart.netlify.app/">
+                                    <a href="https://beekindart.netlify.app/" target="_blank">
                                         <button class="btn btn-block btn-sea-secondary text-uppercase">
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
@@ -287,7 +287,7 @@
                                 </p>
                                 <p>PDLUP is a padel matchmaker app that creates balanced games, manages tournaments, tracks live scores, and auto-generates leaderboards for formats like Americano, Mexicano, and King of the Hill. Technology that I used are React, TypeScript, Capacitor, Revenuecat, Supabase.</p>
                                 <div class="cta text-center">
-                                    <a href="https://pdlup.com/">
+                                    <a href="https://pdlup.com/" target="_blank">
                                         <button class="btn btn-block btn-sea-secondary text-uppercase">
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
@@ -311,7 +311,7 @@
                                 </p>
                                 <p>Laracamp is an online coding learning platform. It offers structured lessons, hands-on projects, and guided bootcamps to help developers improve their programming skills from beginner to advanced. Technology that I used are Laravel, Google OAuth, MySQL, Netlify.</p>
                                 <div class="cta text-center">
-                                    <a href="https://laracamp-html.netlify.app/">
+                                    <a href="https://laracamp-html.netlify.app/" target="_blank">
                                         <button class="btn btn-block btn-sea-secondary text-uppercase">
                                             <i class="fas fa-external-link-alt"></i>
                                         </button>
@@ -325,8 +325,14 @@
         </div>
 
         <div class="cta text-center">
-            <a href="#projectCollapse" class="project-card-collapse" data-bs-toggle="collapse"
-                data-bs-target=".project-collapse" role="button" aria-expanded="false" aria-controls="projectCollapse*">
+            <a href="#projectCollapse"
+                id="projectCollapseToggle"
+                class="project-card-collapse"
+                data-bs-toggle="collapse"
+                data-bs-target=".project-collapse"
+                role="button"
+                aria-expanded="false"
+                aria-controls="projectCollapse*">
                 View More <i class="fas fa-angle-down"></i>
             </a>
         </div>
@@ -457,10 +463,163 @@
         </div>
     </footer>
 
+    <!-- Image Preview Overlay -->
+    <div class="image-overlay" id="imageOverlay">
+        <img id="overlayImage" src="" alt="Preview">
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="./assets/scripts/main.js"></script>
+
+    <script>
+        const overlay = document.getElementById("imageOverlay");
+        const overlayImage = document.getElementById("overlayImage");
+
+        if (overlay && overlayImage) {
+            const images = document.querySelectorAll(".project-card img");
+
+            let scale = 1;
+            let startDistance = 0;
+
+            // Open overlay
+            images.forEach((img) => {
+                img.addEventListener("click", () => {
+                    overlay.classList.add("active");
+                    overlayImage.src = img.src;
+
+                    scale = 1;
+                    overlayImage.style.transform = `scale(${scale})`;
+
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            // Close overlay
+            function closeOverlay() {
+                overlay.classList.remove("active");
+
+                scale = 1;
+                overlayImage.style.transform = `scale(1)`;
+
+                document.body.style.overflow = "";
+            }
+
+            // Close when background clicked
+            overlay.addEventListener("click", (e) => {
+                if (e.target !== overlayImage) {
+                    closeOverlay();
+                }
+            });
+
+            // ESC close
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    closeOverlay();
+                }
+            });
+
+            // Mouse wheel zoom
+            overlay.addEventListener("wheel", (e) => {
+                e.preventDefault();
+
+                scale += e.deltaY * -0.001;
+
+                scale = Math.min(Math.max(1, scale), 5);
+
+                overlayImage.style.transform = `scale(${scale})`;
+            });
+
+            // Pinch zoom mobile
+            overlay.addEventListener("touchstart", (e) => {
+                if (e.touches.length === 2) {
+                    startDistance = getDistance(
+                        e.touches[0],
+                        e.touches[1]
+                    );
+                }
+            });
+
+            overlay.addEventListener("touchmove", (e) => {
+                if (e.touches.length === 2) {
+                    e.preventDefault();
+
+                    const newDistance = getDistance(
+                        e.touches[0],
+                        e.touches[1]
+                    );
+
+                    const zoomFactor = newDistance / startDistance;
+
+                    scale *= zoomFactor;
+
+                    scale = Math.min(Math.max(1, scale), 5);
+
+                    overlayImage.style.transform = `scale(${scale})`;
+
+                    startDistance = newDistance;
+                }
+            }, { passive: false });
+
+            function getDistance(touch1, touch2) {
+                return Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+            }
+        }
+    </script>
+
+    <script>
+        const collapseToggle = document.getElementById("projectCollapseToggle");
+        const collapses = document.querySelectorAll(".project-collapse");
+
+        if (collapseToggle && collapses.length > 0) {
+            const STORAGE_KEY = "projectsExpanded";
+
+            // INITIAL LOAD ONLY
+            const isExpanded = localStorage.getItem(STORAGE_KEY) === "true";
+
+            console.log({isExpanded})
+
+            collapses.forEach((el) => {
+                if (isExpanded) {
+                    el.classList.add("show");
+                } else {
+                    el.classList.remove("show");
+                }
+            });
+
+            updateCollapseUI(isExpanded);
+
+            // WATCH STATE AFTER TOGGLE
+            collapseToggle.addEventListener("click", () => {
+                setTimeout(() => {
+                    const expanded =
+                        collapseToggle.getAttribute("aria-expanded") === "true";
+
+                    localStorage.setItem(STORAGE_KEY, expanded);
+
+                    updateCollapseUI(expanded);
+                }, 50);
+            });
+
+            function updateCollapseUI(expanded) {
+                console.log({expanded})
+                collapseToggle.classList.toggle("expanded", expanded);
+
+                collapseToggle.setAttribute(
+                    "aria-expanded",
+                    expanded ? "true" : "false"
+                );
+
+                collapseToggle.innerHTML = expanded
+                    ? 'View Less <i class="fas fa-angle-down"></i>'
+                    : 'View More <i class="fas fa-angle-down"></i>';
+            }
+        }
+    </script>
 </body>
 
 </html>
