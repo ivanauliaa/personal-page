@@ -483,14 +483,35 @@
             let scale = 1;
             let startDistance = 0;
 
+            let pointX = 0;
+            let pointY = 0;
+
+            let startX = 0;
+            let startY = 0;
+
+            let isDragging = false;
+
+            function updateTransform() {
+                overlayImage.style.transform =
+                    `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            }
+
+            function resetImage() {
+                scale = 1;
+                pointX = 0;
+                pointY = 0;
+
+                updateTransform();
+            }
+
             // Open overlay
             images.forEach((img) => {
                 img.addEventListener("click", () => {
                     overlay.classList.add("active");
+
                     overlayImage.src = img.src;
 
-                    scale = 1;
-                    overlayImage.style.transform = `scale(${scale})`;
+                    resetImage();
 
                     document.body.style.overflow = "hidden";
                 });
@@ -500,20 +521,17 @@
             function closeOverlay() {
                 overlay.classList.remove("active");
 
-                scale = 1;
-                overlayImage.style.transform = `scale(1)`;
+                resetImage();
 
                 document.body.style.overflow = "";
             }
 
-            // Close when background clicked
             overlay.addEventListener("click", (e) => {
-                if (e.target !== overlayImage) {
+                if (e.target === overlay) {
                     closeOverlay();
                 }
             });
 
-            // ESC close
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
                     closeOverlay();
@@ -524,24 +542,85 @@
             overlay.addEventListener("wheel", (e) => {
                 e.preventDefault();
 
+                const xs = (e.clientX - pointX) / scale;
+                const ys = (e.clientY - pointY) / scale;
+
                 scale += e.deltaY * -0.001;
 
                 scale = Math.min(Math.max(1, scale), 5);
 
-                overlayImage.style.transform = `scale(${scale})`;
+                pointX = e.clientX - xs * scale;
+                pointY = e.clientY - ys * scale;
+
+                updateTransform();
             });
 
-            // Pinch zoom mobile
+            // Desktop drag
+            overlayImage.addEventListener("mousedown", (e) => {
+                if (scale <= 1) return;
+
+                e.preventDefault();
+
+                isDragging = true;
+
+                startX = e.clientX - pointX;
+                startY = e.clientY - pointY;
+
+                overlayImage.style.cursor = "grabbing";
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+
+                pointX = e.clientX - startX;
+                pointY = e.clientY - startY;
+
+                updateTransform();
+            });
+
+            document.addEventListener("mouseup", () => {
+                isDragging = false;
+                overlayImage.style.cursor = "grab";
+            });
+
+            // Mobile drag + pinch
+            let lastTouchX = 0;
+            let lastTouchY = 0;
+
             overlay.addEventListener("touchstart", (e) => {
+                if (e.touches.length === 1 && scale > 1) {
+                    lastTouchX = e.touches[0].clientX;
+                    lastTouchY = e.touches[0].clientY;
+                }
+
                 if (e.touches.length === 2) {
                     startDistance = getDistance(
                         e.touches[0],
                         e.touches[1]
                     );
                 }
-            });
+            }, { passive: false });
 
             overlay.addEventListener("touchmove", (e) => {
+                // Drag
+                if (e.touches.length === 1 && scale > 1) {
+                    e.preventDefault();
+
+                    const touch = e.touches[0];
+
+                    const dx = touch.clientX - lastTouchX;
+                    const dy = touch.clientY - lastTouchY;
+
+                    pointX += dx;
+                    pointY += dy;
+
+                    lastTouchX = touch.clientX;
+                    lastTouchY = touch.clientY;
+
+                    updateTransform();
+                }
+
+                // Pinch zoom
                 if (e.touches.length === 2) {
                     e.preventDefault();
 
@@ -556,9 +635,9 @@
 
                     scale = Math.min(Math.max(1, scale), 5);
 
-                    overlayImage.style.transform = `scale(${scale})`;
-
                     startDistance = newDistance;
+
+                    updateTransform();
                 }
             }, { passive: false });
 
@@ -580,8 +659,6 @@
 
             // INITIAL LOAD ONLY
             const isExpanded = localStorage.getItem(STORAGE_KEY) === "true";
-
-            console.log({isExpanded})
 
             collapses.forEach((el) => {
                 if (isExpanded) {
@@ -606,7 +683,6 @@
             });
 
             function updateCollapseUI(expanded) {
-                console.log({expanded})
                 collapseToggle.classList.toggle("expanded", expanded);
 
                 collapseToggle.setAttribute(
